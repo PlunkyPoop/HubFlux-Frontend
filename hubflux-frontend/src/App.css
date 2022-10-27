@@ -1,5 +1,13 @@
+html
+{
+  height: 100%;
+  width: 100%;
+  background: rgb(5,24,84);
+  background: linear-gradient(38deg, rgba(5,24,84,1) 0%, rgba(107,11,178,1) 97%);
+}
 .App {
   text-align: center;
+
 }
 
 .App-logo {
