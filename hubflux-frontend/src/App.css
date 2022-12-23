@@ -10,6 +10,31 @@ html
 
 }
 
+.css-17lvz0h-MuiPaper-root-MuiCard-root
+{
+  box-shadow: none !important;
+}
+
+.css-17lvz0h-MuiPaper-root-MuiCard-root
+{
+  background-color: hsla(0, 0%, 0%, 0) !important; 
+}
+/* overriding mui template */
+.css-1oqqzyl-MuiContainer-root
+{
+  max-height: 500px !important;
+}
+.css-vj1n65-MuiGrid-root
+{
+  width: 100% !important;
+  margin-left: 0px;
+  
+}
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+  background-color: hsla(0, 0%, 0%, 0) !important; 
+  box-shadow: none !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
