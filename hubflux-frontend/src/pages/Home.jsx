@@ -12,12 +12,13 @@ export default function Home() {
 
   const [imdbdata, setIMDBData]=useState([]);
 
-  
+  const imdbmovie = "tt11198330";
+
   // const {id}= 1;
   useEffect(() => {
-    async function LoadIMDBData(imdbmovie) {
+      async  function LoadIMDBData() {
       try {
-        const res = await axios.get(`http://localhost:8081/imdbData/tt11198330`);
+        const res = await axios.get(`http://localhost:8081/imdbData/`+ imdbmovie);
         console.log(res.data);
         setIMDBData(res.data);
       } catch (error) {
@@ -28,16 +29,16 @@ export default function Home() {
   }, []);
 
 
-
-  // useEffect(()=>{
-  //   LoadIMDBData();
-  // },[])
-
-  // const LoadIMDBData= async ()=>{
-  //   const result= await axios.get("http://localhost:8081/imdbData");
-  //   console.log(result.data);
-  //   setIMDBData(result.data);
-  // }
+  useEffect(()=>{
+    axios.get("http://localhost:8081/stream-services", {mode:'cors'}).then(response => {
+      setServices(response.data);
+      console.log(response.data);
+      setLoading(false);
+    });
+  },[])
+    
+    const [isLoading, setLoading] = useState(true);
+    const [services, setServices] = useState([]);
 
 
   return (
@@ -60,8 +61,9 @@ export default function Home() {
    
 </Grid>
 
-   
-        <SimpleSlider/>
+{isLoading === false && 
+    <SimpleSlider props={services}/>
+  }
      
 
         
