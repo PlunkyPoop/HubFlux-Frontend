@@ -1,22 +1,48 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {  useNavigate, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
-import { FormGroup, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
+import { FormGroup, FormControl, InputLabel, Input, FormHelperText, TextField } from '@mui/material';
 import { margin, width } from "@mui/system";
+import {  useNavigate, useParams  } from "react-router-dom";
 
-export default function Edit(name) {
-    
+export default function Edit() {
 
-    useEffect(()=>{
+  const navigate = useNavigate();
+  const {name}= useParams();
+
+  const onSubmit= async (event)=>{
+    event.preventDefault();
+    await axios.put(`http://localhost:8081/put/streamservice/${service.id}`, service);
+    navigate("/settings");
+};
+
+const onInputChange=(event)=>{       
+  // Keeps adding new objects
+  console.log(event.target.name);
+  console.log(event.target.value);
+  setServices({...service, [event.target.name]: event.target.value});
+  
+
+};
+useEffect(()=>{
+  loadData();
+},[]);
+
+
+const [service, setServices]=useState({
+  name:"",
+  imageLocation:"",
+  imdbMovie:"",
+});
+
+
+const loadData= async (event)=>{
         axios.get("http://localhost:8081/get-service/"+ name, {mode:'cors'}).then(response => {
+          console.log(name);
           setServices(response.data);
           console.log(response.data);
         });
-      },[])
-
-      const [services, setServices] = useState([]);
-
+    }
     // const onSubmit= async (event)=>{
     //     event.preventDefault();
     //     await axios.put(`${id}`, person);
@@ -26,17 +52,19 @@ export default function Edit(name) {
 
 
   return (
-<FormGroup style={{backgroundColor: "#ffffff"}} sx={{ width: 900, margin: 'auto' }}>
+<FormGroup style={{backgroundColor: "#ffffff", padding: 10}} sx={{ width: 900, margin: 'auto' }}>
 
   <InputLabel htmlFor="name">Name</InputLabel>
-  <Input id="name" aria-describedby="name-input" value={name} />
+  <TextField   type="text" id="nameinput" aria-describedby="name" name="name" value={service.name} onChange={(event)=>onInputChange(event)}/>
 
-  <InputLabel htmlFor="image-location">Image location</InputLabel>
-  <Input id="image-location" aria-describedby="image-input" value={name} />
+  <InputLabel htmlFor="imageLocation">Image location</InputLabel>
+  <TextField  type="text" id="imageLocation" aria-describedby="imageLocation" name="imageLocation"  value={service.imageLocation} onChange={(event)=>onInputChange(event)}/>
 
-  <InputLabel htmlFor="imdb-code">IMDB code</InputLabel>
-  <Input id="imdb-code" aria-describedby="imdb-input" />
+  <InputLabel htmlFor="imdbMovie">IMDB code</InputLabel>
+  <TextField  type="text" id="imdbMovie" aria-describedby="imdbMovie" name="imdbMovie" value={service.imdbMovie} onChange={(event)=>onInputChange(event)}/>
 
+
+    <Button onClick={onSubmit}>Change</Button>
 </FormGroup>
  
   )

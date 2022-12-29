@@ -20,12 +20,9 @@ export default function Settings()
         LoadServices();
     }
 
+
     const navigate = useNavigate();
     const NavigateToMain  = () => navigate('/');
-    function Navigate(location)
-    {
-        navigate(location);
-    }  
 
     useEffect(()=>{
         LoadServices();
