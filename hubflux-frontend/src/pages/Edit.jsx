@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
-import { FormGroup, FormControl, InputLabel, Input, FormHelperText, TextField } from '@mui/material';
+import { FormGroup, InputLabel, TextField } from '@mui/material';
 import {  useNavigate, useParams  } from "react-router-dom";
 
 export default function Edit() {
@@ -25,7 +25,7 @@ const onInputChange=(event)=>{
 };
 useEffect(()=>{
   loadData();
-},[]);
+});
 
 
 const [service, setServices]=useState({
