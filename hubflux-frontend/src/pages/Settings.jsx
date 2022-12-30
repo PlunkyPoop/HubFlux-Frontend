@@ -16,14 +16,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export default function Settings() 
 {
     const deleteService= async (id)=>{
-        await axios.delete(`localhost:8081/deleteService/${id}`);
+        await axios.delete(`http://localhost:8081/delete/streamservice/${id}`);
         LoadServices();
     }
 
 
     const navigate = useNavigate();
     const NavigateToMain  = () => navigate('/');
+    const NavigateToAdd  = () => navigate('/add');
 
+    
     useEffect(()=>{
         LoadServices();
       },[])
@@ -81,6 +83,7 @@ return (
       </TableBody>
     </Table>
     <Button onClick={NavigateToMain} sx={{ textAlign: "center"}} className="btn btn-outline-warning mx-2">Go Back to Main Page</Button>
+    <Button onClick={NavigateToAdd} sx={{ backgroundColor: "green", color: "white"}} className="btn btn-outline-warning mx-2">Add Streaming service</Button>
   </TableContainer>
 
   </div>
