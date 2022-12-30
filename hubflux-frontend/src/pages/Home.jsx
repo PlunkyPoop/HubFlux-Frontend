@@ -6,17 +6,35 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid } from '@mui/material';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
 import '../App.css';
 
 export default function Home() {
 
   const [imdbdata, setIMDBData]=useState([]);
+  // const imdbmovie = "tt11198330";
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [imdbMovie, setIMDBMovie] = useState();
 
-  const imdbmovie = "tt11198330";
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    arrows: false
+  }
+
 
   // const {id}= 1;
-  useEffect(() => {
-      async  function LoadIMDBData() {
+
+      async function LoadIMDBData(imdbmovie) {
       try {
         const res = await axios.get(`http://localhost:8081/imdbData/`+ imdbmovie);
         console.log(res.data);
@@ -24,19 +42,24 @@ export default function Home() {
       } catch (error) {
         console.log(error);
       }
+      setMovieLoading(false);
     }
-    LoadIMDBData();
-  }, []);
-
+    
+    function newMovie(imdbMovie)
+    {
+      setMovieLoading(true);
+      LoadIMDBData(imdbMovie);
+    }
 
   useEffect(()=>{
     axios.get("http://localhost:8081/stream-services", {mode:'cors'}).then(response => {
       setServices(response.data);
-      console.log(response.data);
+      LoadIMDBData(response.data[currentIndex].imdbMovie);
       setLoading(false);
     });
-  },[])
+  },[]);
     
+    const [LoadingMovie, setMovieLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
     const [services, setServices] = useState([]);
 
@@ -55,14 +78,30 @@ export default function Home() {
 <Grid container spacing={3} sx={{p:2}} alignItems="center" justifyContent="center">
        
        <Grid>
-        
+       {LoadingMovie === false && 
            <MovieCard name={imdbdata.title} description={imdbdata.plot} price={imdbdata.imDbRating} image={imdbdata.image}/>
+       }
        </Grid>
    
 </Grid>
 
 {isLoading === false && 
-    <SimpleSlider props={services}/>
+    // <SimpleSlider props={services}/>
+    <Grid marginLeft={5}>
+    <Slider {...settings} beforeChange={(currentSlide, nextSlide) => {
+              setCurrentIndex(nextSlide);
+              setIMDBMovie(services[nextSlide].imdbMovie);
+              newMovie(services[nextSlide].imdbMovie);
+
+          }}>
+    {services.map((service) => (
+       <div>{console.log(currentIndex)}
+       <img id={service.name} src={service.imageLocation} height="200px" />
+      </div>
+        ))}
+
+    </Slider>
+    </Grid>
   }
      
 
