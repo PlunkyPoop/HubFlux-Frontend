@@ -1,12 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import { FormGroup, InputLabel, Input } from '@mui/material';
-import {  useNavigate, useParams  } from "react-router-dom";
+import {  useNavigate  } from "react-router-dom";
 
 export default function Add() {
     const navigate = useNavigate();
-    const {name}= useParams();
   
     const onSubmit= async (event)=>{
       event.preventDefault();
