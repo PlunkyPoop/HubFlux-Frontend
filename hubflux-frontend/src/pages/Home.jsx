@@ -17,6 +17,7 @@ export default function Home() {
   const [imdbdata, setIMDBData]=useState([]);
   // const imdbmovie = "tt11198330";
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imdbMovie, setIMDBMovie] = useState();
 
 
   var settings = {
@@ -37,11 +38,10 @@ export default function Home() {
         const res = await axios.get(`http://localhost:8081/imdbData/`+ imdbmovie);
         console.log(res.data);
         setIMDBData(res.data);
-        setMovieLoading(false);
-        // document.body.style.backgroundImage = "url('"+res.data.image+"')";
       } catch (error) {
         console.log(error);
       }
+      setMovieLoading(false);
     }
     
     function newMovie(imdbMovie)
@@ -56,7 +56,7 @@ export default function Home() {
       LoadIMDBData(response.data[currentIndex].imdbMovie);
       setLoading(false);
     });
-  });
+  },[]);
     
     const [LoadingMovie, setMovieLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
@@ -66,13 +66,11 @@ export default function Home() {
   return (
 
 
-
 <div className="App">
 <Grid item xs={8}>
 
 <ButtonAppBar/>
 </Grid>
-
 
 
    
@@ -91,12 +89,13 @@ export default function Home() {
     <Grid marginLeft={5}>
     <Slider {...settings} beforeChange={(currentSlide, nextSlide) => {
               setCurrentIndex(nextSlide);
+              setIMDBMovie(services[nextSlide].imdbMovie);
               newMovie(services[nextSlide].imdbMovie);
 
           }}>
     {services.map((service) => (
        <div>{console.log(currentIndex)}
-       <img alt='imdbphoto' id={service.name} src={service.imageLocation} height="200px" />
+       <img id={service.name} src={service.imageLocation} height="200px" />
       </div>
         ))}
 
