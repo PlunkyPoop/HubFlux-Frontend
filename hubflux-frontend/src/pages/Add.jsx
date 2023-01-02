@@ -45,7 +45,7 @@ export default function Add() {
     <Input  type="text" id="imdbMovie" aria-describedby="imdbMovie" name="imdbMovie" value={service.imdbMovie} onChange={(event)=>onInputChange(event)}/>
   
   
-      <Button onClick={onSubmit}>Add</Button>
+      <Button id="submit" onClick={onSubmit}>Add</Button>
   </FormGroup>
    
     )
