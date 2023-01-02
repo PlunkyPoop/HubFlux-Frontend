@@ -30,13 +30,6 @@ export default function Add() {
     imdbMovie:"",
   });
   
-
-      // const onSubmit= async (event)=>{
-      //     event.preventDefault();
-      //     await axios.put(`${id}`, person);
-      //     navigate("/");
-      // };
-  
   
   
     return (

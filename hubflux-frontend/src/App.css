@@ -5,20 +5,16 @@ html
   background: rgb(5,24,84);
   background: linear-gradient(38deg, rgba(5,24,84,1) 0%, rgba(107,11,178,1) 97%) no-repeat;
   background-size: cover;
-  height: 100%;
  
 }
 .App {
   text-align: center;
 }
 
-.css-17lvz0h-MuiPaper-root-MuiCard-root
-{
-  box-shadow: none !important;
-}
 
 .css-17lvz0h-MuiPaper-root-MuiCard-root
 {
+  box-shadow: none !important;
   background-color: hsla(0, 0%, 0%, 0) !important; 
 }
 /* overriding mui template */
