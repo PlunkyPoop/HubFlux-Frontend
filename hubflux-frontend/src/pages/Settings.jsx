@@ -82,8 +82,8 @@ return (
         ))}
       </TableBody>
     </Table>
-    <Button onClick={NavigateToMain} sx={{ textAlign: "center"}} className="btn btn-outline-warning mx-2">Go Back to Main Page</Button>
-    <Button onClick={NavigateToAdd} sx={{ backgroundColor: "green", color: "white"}} className="btn btn-outline-warning mx-2">Add Streaming service</Button>
+    <Button aria-label="DeleteBtn" onClick={NavigateToMain} sx={{ textAlign: "center"}}  className="btn btn-outline-warning mx-2">Go Back to Main Page</Button>
+    <Button id="AddService" onClick={NavigateToAdd} sx={{ backgroundColor: "green", color: "white"}} className="btn btn-outline-warning mx-2">Add Streaming service</Button>
   </TableContainer>
 
   </div>
