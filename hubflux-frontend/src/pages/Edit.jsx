@@ -23,9 +23,11 @@ const onInputChange=(event)=>{
   
 
 };
+
 useEffect(()=>{
   loadData();
-});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+},[]);
 
 
 const [service, setServices]=useState({
@@ -58,7 +60,7 @@ const loadData= async (event)=>{
   <TextField  type="text" id="imdbMovie" aria-describedby="imdbMovie" name="imdbMovie" value={service.imdbMovie} onChange={(event)=>onInputChange(event)}/>
 
 
-    <Button onClick={onSubmit}>Change</Button>
+    <Button onClick={onSubmit} >Change</Button>
 </FormGroup>
  
   )
