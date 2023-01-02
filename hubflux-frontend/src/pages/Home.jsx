@@ -1,7 +1,6 @@
 import ButtonAppBar from '../components/Appbar'
 import MovieCard from '../components/MovieCard';
-import React from 'react';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Grid } from '@mui/material';
 
@@ -15,11 +14,10 @@ import '../App.css';
 export default function Home() {
 
   const [imdbdata, setIMDBData]=useState([]);
-  // const imdbmovie = "tt11198330";
   const [currentIndex, setCurrentIndex] = useState(0);
 
 
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -29,8 +27,6 @@ export default function Home() {
     arrows: false
   }
 
-
-  // const {id}= 1;
 
       async function LoadIMDBData(imdbmovie) {
       try {
@@ -97,7 +93,7 @@ export default function Home() {
           }}>
     {services.map((service) => (
        <div>{console.log(currentIndex)}
-       <img  alt="serviceimage" id={service.name} src={service.imageLocation} height="200px" />
+       <img key={service.name}  alt="serviceimage" id={service.name} src={service.imageLocation} height="200px" />
       </div>
         ))}
 

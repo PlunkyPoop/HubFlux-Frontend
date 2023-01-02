@@ -42,11 +42,6 @@ const loadData= async (event)=>{
           console.log(response.data);
         });
     }
-    // const onSubmit= async (event)=>{
-    //     event.preventDefault();
-    //     await axios.put(`${id}`, person);
-    //     navigate("/");
-    // };
 
 
 
