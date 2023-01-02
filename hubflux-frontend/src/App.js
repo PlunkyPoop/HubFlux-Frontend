@@ -1,42 +1,29 @@
-import { Button,Grid,BottomNavigation } from '@mui/material';
-import './App.css';
-import ButtonAppBar from './components/Appbar'
-import PlexTextfield from './components/Plex';
-import Carousel from 'react-elastic-carousel'
-import React, { Component } from 'react';
-import SimpleSlider from './components/AppCaroussel';
+
+
+import  Home from './pages/Home';
+import  Settings  from './pages/Settings';
+import Edit from './pages/Edit';
+import Add from './pages/Add'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 
-function App() {
+
+export default function App ()  {
   return (
+    <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/edit/:name" element={<Edit />} />
+          <Route path="/add" element={<Add />} />
+        </Routes>
+    </Router>
+);
 
-<div className="App">
-<Grid xs={8}>
-<ButtonAppBar/>
-</Grid>
-  <Grid container spacing={2}>
- 
-  <Grid xs={4}>
 
-  </Grid>
-  <Grid xs={4}>
 
-  </Grid>
-  <Grid xs={8}>
-
-  </Grid>
-</Grid>
-        
-        {/* <PlexTextfield/> */}
-   
-        <SimpleSlider/>
-   
-        {/* <Button/> */}
-        
-
-    </div>
-  );
+  
 }
 
-export default App;
