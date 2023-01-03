@@ -12,8 +12,8 @@ describe('delete record', () => {
       cy.get('.MuiTableBody-root tr:last-child .css-ancrnh-MuiButtonBase-root-MuiIconButton-root svg[data-testid=DeleteIcon]').click();
       
      //Has to wait a little bit so the backend can actually delete the record
-      cy.wait(500);
-
+      cy.wait(2000);
+      
         //Count the new rows
         cy.get('.MuiTableBody-root tr').then(($rows) => {
         const amountofServicesAfter = $rows.length;
