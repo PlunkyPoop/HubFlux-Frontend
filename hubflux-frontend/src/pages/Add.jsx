@@ -9,7 +9,7 @@ export default function Add() {
   
     const onSubmit= async (event)=>{
       event.preventDefault();
-      await axios.post(`http://localhost:8081/post/streamservice`, service);
+      await axios.post(`https://hubflux.azurewebsites.net/post/streamservice`, service);
       navigate("/settings");
   };
   

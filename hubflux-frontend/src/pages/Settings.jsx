@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export default function Settings() 
 {
     const deleteService= async (id)=>{
-        await axios.delete(`http://localhost:8081/delete/streamservice/${id}`);
+        await axios.delete(`https://hubflux.azurewebsites.net/delete/streamservice/${id}`);
         LoadServices();
     }
 
@@ -31,7 +31,7 @@ export default function Settings()
       },[])
 
       const LoadServices= async ()=>{
-        axios.get("http://localhost:8081/stream-services", {mode:'cors'}).then(response => {
+        axios.get("https://hubflux.azurewebsites.net/stream-services", {mode:'cors'}).then(response => {
             setServices(response.data);
             console.log(response.data);
           });

@@ -11,7 +11,7 @@ export default function Edit() {
 
   const onSubmit= async (event)=>{
     event.preventDefault();
-    await axios.put(`http://localhost:8081/put/streamservice/${service.id}`, service);
+    await axios.put(`https://hubflux.azurewebsites.net/put/streamservice/${service.id}`, service);
     navigate("/settings");
 };
 
@@ -38,7 +38,7 @@ const [service, setServices]=useState({
 
 
 const loadData= async (event)=>{
-        axios.get("http://localhost:8081/get-service/"+ name, {mode:'cors'}).then(response => {
+        axios.get("https://hubflux.azurewebsites.net/get-service/"+ name, {mode:'cors'}).then(response => {
           console.log(name);
           setServices(response.data);
           console.log(response.data);
