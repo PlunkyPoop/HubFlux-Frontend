@@ -30,7 +30,7 @@ export default function Home() {
 
       async function LoadIMDBData(imdbmovie) {
       try {
-        const res = await axios.get(`http://localhost:8081/imdbData/`+ imdbmovie);
+        const res = await axios.get(`https://hubflux.azurewebsites.net/imdbData/`+ imdbmovie);
         console.log(res.data);
         setIMDBData(res.data);
       } catch (error) {
@@ -47,7 +47,7 @@ export default function Home() {
     }
 
   useEffect(()=>{
-    axios.get("http://localhost:8081/stream-services", {mode:'cors'}).then(response => {
+    axios.get("https://hubflux.azurewebsites.net/stream-services", {mode:'cors'}).then(response => {
       setServices(response.data);
       LoadIMDBData(response.data[currentIndex].imdbMovie);
       setLoading(false);
@@ -92,9 +92,7 @@ export default function Home() {
 
           }}>
     {services.map((service) => (
-       <div>{console.log(currentIndex)}
        <img key={service.name}  alt="serviceimage" id={service.name} src={service.imageLocation} height="200px" />
-      </div>
         ))}
 
     </Slider>
